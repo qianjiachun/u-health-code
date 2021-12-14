@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-		<iframe v-if="hasToken" :src="iframeUrl" class="webview" scrolling=no></iframe>
+		<iframe v-if="hasToken" :src="iframeUrl" class="webview"></iframe>
 		<div v-else class="form">
 			<CellGroup inset>
 				<Field
