@@ -29,7 +29,6 @@ function onClickReset() {
     location.reload();
 }
 
-
 let currentTab = ref(0);
 </script>
 

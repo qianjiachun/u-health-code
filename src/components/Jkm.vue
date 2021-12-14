@@ -19,7 +19,7 @@
 						<Button :disabled="isSending" size="small" type="primary" @click="onClickSendCode">{{sendingText}}</Button>
 					</template>
 				</Field>
-				<Button style="margin-top: 10px;" round block type="primary" size="small" @click="onClickLogin">
+				<Button style="margin-top: 10px;" round block type="primary" @click="onClickLogin">
 					登录
 				</Button>
 			</CellGroup>
@@ -45,7 +45,7 @@ let sendingText = ref("发送验证码");
 
 function onClickSendCode() {
 	if (/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/.test(phone.value)) {
-		cd.value = 10;
+		cd.value = 60;
 		isSending.value = true;
 		sendingText.value = `${String(cd.value)}s`;
 		cd.value--;
@@ -84,7 +84,6 @@ async function onClickLogin() {
 	}
 	let access_token = ret.data.data.access_token;
 	ret = await apiGetSuHealthCodeToken(access_token);
-	console.log(ret.data)
 	if (ret.data.code !== 200) {
 		Notify({ type: 'warning', message: ret.data.info });
 		return;
