@@ -2,7 +2,7 @@
     <div style="height: 100%;">
         <NavBar title="你的码">
             <template #right>
-                <span class="btn-txt" @click="showBottom=!showBottom">隐藏底部</span>
+                <span class="btn-txt" @click="showBottom=!showBottom">{{showBottom?"隐藏":"显示"}}底部</span>
                 <span style="margin-left: 10px;" class="btn-txt" @click="onClickReset">重置</span>
             </template>
             <template #left>
