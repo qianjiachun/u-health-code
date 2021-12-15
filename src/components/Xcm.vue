@@ -1,15 +1,10 @@
 <template>
     <div class="wrap">
-        <iframe ref="dom_webview" class="webview" src="https://xc.caict.ac.cn/#/result"></iframe>
+        <iframe class="webview" src="https://xc.caict.ac.cn/#/result"></iframe>
     </div>
 </template>
 
 <script setup>
-import {ref, watch} from 'vue'
-let dom_webview = ref(null);
-watch(dom_webview, (n, o) => {
-	console.log(n)
-})
 
 </script>
 

@@ -2,7 +2,7 @@
     <div class="wrap">
 		<iframe v-if="hasToken" :src="iframeUrl" class="webview"></iframe>
 		<div v-else class="form">
-			<CellGroup inset>
+			<CellGroup style="margin-bottom: 100px;" inset>
 				<Field
 					v-model="phone"
 					required
@@ -23,7 +23,6 @@
 					登录
 				</Button>
 			</CellGroup>
-			
 		</div>
     </div>
 </template>

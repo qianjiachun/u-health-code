@@ -12,8 +12,8 @@
             </template>
         </NavBar>
         <Jkm v-if="currentTab===0"></Jkm>
-        <Xcm v-else></Xcm>
-        <Tabbar v-if="showBottom" v-model="currentTab">
+        <Xcm v-else-if="!isIos"></Xcm>
+        <Tabbar v-if="showBottom" v-model="currentTab" @change="onChangeTab">
             <TabbarItem icon="qr">健康码</TabbarItem>
             <TabbarItem icon="back-top">行程码</TabbarItem>
         </Tabbar>
@@ -21,13 +21,15 @@
 </template>
 
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, onMounted } from 'vue'
 import { Tabbar, TabbarItem } from 'vant';
 import { NavBar, Dialog } from 'vant'
 
 const Jkm = defineAsyncComponent(() => import("../components/Jkm.vue"));
 const Xcm = defineAsyncComponent(() => import("../components/Xcm.vue"));
 let showBottom = ref(true);
+let isIos = ref(false);
+let currentTab = ref(0);
 function onClickReset() {
     Dialog.confirm({
     title: '提示',
@@ -43,7 +45,18 @@ function onClickReset() {
     
 }
 
-let currentTab = ref(0);
+function onChangeTab(tab) {
+    if (tab === 1 && isIos.value) {
+        location.href = "https://xc.caict.ac.cn/#/result";
+        currentTab.value = 0;
+    }
+}
+
+onMounted(() => {
+    let u = navigator.userAgent;  
+    isIos.value = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+})
+
 </script>
 
 <style scoped>
